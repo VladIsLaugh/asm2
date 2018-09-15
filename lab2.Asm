@@ -14,6 +14,12 @@ LOCAL Buf[100]:BYTE	; локальний буфер в100 елементів
 	mov Save_esp,esp ; зберігаємо вказівник стеку
 	invoke GetLocalTime,addr Time;
 	xor eax,eax	; eax=0
+	mov ax,Time.wDayOfWeek
+	mov bx,10
+	mul bx	;ax*bx
+	add eax,offset Day_of_week ;eax=address Day_of_week[Time.wDayOfWeek*10]
+	push eax
+	xor eax,eax
 	mov ax,Time.wSecond	
 	push eax
 	mov ax,Time.wMinute	
