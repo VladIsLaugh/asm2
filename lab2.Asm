@@ -29,8 +29,13 @@ LOCAL Buf[100]:BYTE	; локальний буфер в100 елементів
 	
 	mov ax,Time.wYear	
 	push eax
-	mov ax,Time.wMonth	
+	mov ax,Time.wMonth
+	mov bx,10
+	mul bx	;ax*bx
+	add eax,offset Month_of_year ;eax=address Day_of_week[Time.wDayOfWeek*10]
 	push eax
+	xor eax,eax
+
 	mov ax,Time.wDay	
 	push eax
 	push offset FORMAT_STRING
